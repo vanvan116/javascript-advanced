@@ -1,7 +1,7 @@
 // destructering - phân giã
 //rest
 // spread
-//cách lấy giá trị của từng phần tử
+
 
 const arr = [7, 8, 9];
 var a = arr[0];
