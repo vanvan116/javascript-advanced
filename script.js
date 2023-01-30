@@ -1,80 +1,136 @@
-//Khởi tạo biến
-var age1 = 18;
-const age2 = 20;
-let age3 = 25;
+// destructering - phân giã
+// spread
+//cách lấy giá trị của từng phần tử
 
-console.log(age1, age2, age3);
-//coding challege 1
-// Tính chỉ số BMI của Hồng và Na
+const arr = [7, 8, 9];
+var a = arr[0];
+var b = arr[1];
+var c = arr[2];
+console.log(a, b, c);
 
-const weightHong = 68;
-const heightHong = 1.69;
-const weightNa = 70;
-const heightNa = 1.89; //chiều cao của Na
-//tính chỉ số BMI = cân nặng / chiều cao * chiều cao
+//Sử dụng với array
+var [a, b, c] = arr;
+console.log(a, b, c);
 
-// const BMIHong = weightHong / heightHong ** 2; // bình phương
-// const BMINA = weightNa / (heightNa * heightNa);
+//Toán tử rest - phần còn lại
+var array = ['Javascript', 'PHP', 'Ruby', 'React Native'];
+var [a, b, ...rest] = array;
+console.log(a, b);
+console.log(rest);
 
-// console.log("BMI Hong " + BMIHong, "BMI NA" + BMINA);
-console.log(
-  `BMI của Hồng là ${weightHong / heightHong ** 2}, của Na là ${
-    weightNa / (heightNa * heightNa)
-  }`
-); //template literals
+//Sử dụng với object
+var course = {
+  name: 'Javascript',
+  price: 1000,
+  image: 'image-address',
+  children: {
+    name: 'React JS',
+  },
+  description: 'this is description',
+}; //course.name
+//spread
+var { name, price } = course;
+console.log(name, price);
 
-//Tính tuổi được phép
-const age4 = 15;
-if (age4 > 18) {
-  console.log(`Bạn đã ${age4} nên đủ tuổi`);
-} else {
-  console.log(`Bạn không đủ tuổi!`);
+var { name, ...rest } = course;
+console.log(name);
+console.log(rest);
+
+var { name, ...newObject } = course;
+console.log(newObject);
+
+//Đặt tên cho key của object khi có giá trị trùng nhau
+var {
+  name: parentName,
+  children: { name: childrenName },
+} = course;
+console.log(parentName);
+console.log(childrenName);
+
+//Lấy giá trị không có trong object
+var { name, description = 'default description' } = course;
+console.log(description);
+
+//Sử dụng spread với function
+//Viết function
+//1. Sử dụng keyword function
+//2. Khai báo thông qua biến
+//3. Narrow function
+//hàm thông thường
+function logger1(a, b, c) {
+  console.log(a, b, c);
 }
 
-//Các kiểu dữ liệu trong javascript (7 kiểu)
-//Number, string, boolean (T/F), Undefined, Null, Symbol , BigInt
-//Đặt tên biến:
-/*
-- Đặt theo camelcase (kiểu lạc đà)
-- không được bắt đầu bằng số
-- Không đặc trùng với keyword của javascript
-*/
-const year = 1990;
-console.log(typeof year);
-const myName = "Hồng Hoa";
-console.log(typeof myName);
-
-//Ép kiểu dữ liệu không tường minh
-console.log("23" - "10" - 9);
-console.log("Tôi là Hồng Hoa" + 15 + " tuổi");
-console.log("10" + "15");
-console.log(Number(myName)); //NaN not a number
-//Ép kiểu tường minh
-const myAge = "40";
-console.log(typeof myAge);
-console.log(typeof Number(myAge));
-
-// 2 + 3 + 4 + '5'  = 95
-// '10' - '4' - '3' - 2 + '5' = 15
-
-//Hàm
-// 3 cách khai báo hàm
-//declaration  dùng keyword function
-function myInfo(birthYear) {
-  return 2023 - birthYear;
+//spread
+function logger(...params) {
+  console.log(params);
 }
-const myCurrentAge = myInfo(1990);
-console.log(myCurrentAge);
-// dạng biểu thức
-const myCurrentlAge2 = function (birthYear) {
-  return 2023 - birthYear;
+console.log(logger(1, 2, 5, 9, 'abcd', 'xyz'));
+
+//sử dụng spread để nối 2 mảng array
+var array1 = ['react native', 'javascript', 'electry', 'pizza'];
+var array2 = ['php', 'java programming', 'tomato', 'apple'];
+
+var array3 = [...array2, ...array1];
+console.log(array2);
+
+var [a, ...restArray1] = array1;
+console.log(restArray1);
+
+var [a, ...restArray2] = array2;
+console.log(restArray2);
+var array4 = [...restArray1, ...restArray2];
+console.log(array4);
+
+var defaulConfig = {
+  fullName: 'Anh Nguyen',
+  order: 'order',
+  level: 5,
+  studentID: 'PH1234',
 };
-console.log(myCurrentlAge2(1988));
-//narrow function
-const myCurrentAge3 = (birthYear) => 2023 - birthYear;
-console.log(myCurrentAge3(1989));
-// so sánh == và ===
-// ==  '23' vs 23 -> true
-// ===  '23' vs 23 -> false  >= <= ==
-// 4 8 16 32 64 128 ..
-// 2^2  2^3  2^4 ...
+
+//thay đổi student ID
+var changeConfig = {
+  ...defaulConfig, //spread
+  studentID: 'PH0000',
+};
+console.log(changeConfig);
+
+//short circuting trong javascript
+//falsy value: undefined   NaN   ""  null false  0
+// (true || whatever) => true
+// (false && whatever) => false
+console.log(null || 'dog');
+console.log('cat' || 'dog');
+console.log(0 || null);
+
+//circuting &&
+let age = 20;
+age > 18 && console.log('Ban da du tuoi!');
+
+if (age > 18) {
+  console.log('Ban da du tuoi!');
+}
+
+//for of loop lấy ra những phần tử của 1 mảng, từng chữ cái trong 1 chuỗi
+// tìm xem chữ A có trong chuỗi VAN ANH
+//dùng với array
+var lanague = ['java', 'php', 'c'];
+for (var value of lanague) {
+  console.log(value);
+}
+//dùng với object
+var myInfo = {
+  name: ' Nguyen Van A',
+  age: 18,
+};
+
+console.log(Object.keys(myInfo)); //lấy key của object
+for (var value of Object.keys(myInfo)) {
+  console.log(myInfo[value]); //lấy value theo key của object
+}
+
+console.log(Object.values(myInfo));
+for (var value of Object.values(myInfo)) {
+  console.log(value);
+}
