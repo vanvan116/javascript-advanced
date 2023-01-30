@@ -1,4 +1,5 @@
 // destructering - phân giã
+//rest
 // spread
 //cách lấy giá trị của từng phần tử
 
@@ -113,12 +114,13 @@ if (age > 18) {
 }
 
 //for of loop lấy ra những phần tử của 1 mảng, từng chữ cái trong 1 chuỗi
-// tìm xem chữ A có trong chuỗi VAN ANH
+
 //dùng với array
 var lanague = ['java', 'php', 'c'];
 for (var value of lanague) {
   console.log(value);
 }
+
 //dùng với object
 var myInfo = {
   name: ' Nguyen Van A',
